@@ -1,0 +1,3 @@
+"CFBundleDisplayName" = "Studio";
+"NSMicrophoneUsageDescription" = "Studio utilise le micro pour enregistrer votre voix.";
+"NSCameraUsageDescription" = "Studio utilise la caméra pour enregistrer vos vidéos.";

@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tests StudioCore
+        run: swift test --package-path StudioCore
+
+      - name: Générer le projet Xcode
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Compiler l'app
+        run: |
+          xcodebuild -project Studio.xcodeproj -scheme Studio -configuration Release \
+            -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO -quiet build
