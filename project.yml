@@ -1,0 +1,39 @@
+name: Studio
+
+options:
+  bundleIdPrefix: ch.viorizz
+  developmentLanguage: fr
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "13.0"
+
+packages:
+  StudioCore:
+    path: StudioCore
+
+targets:
+  Studio:
+    type: application
+    platform: macOS
+    sources:
+      - path: Studio
+    dependencies:
+      - package: StudioCore
+    settings:
+      base:
+        PRODUCT_NAME: Studio
+        PRODUCT_BUNDLE_IDENTIFIER: ch.viorizz.studio
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.0"
+        INFOPLIST_FILE: Config/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGN_ENTITLEMENTS: Config/Studio.entitlements
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+        DEVELOPMENT_TEAM: ""
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_APP_SANDBOX: NO
+        DEAD_CODE_STRIPPING: YES
+    scheme:
+      gatherCoverageData: false
